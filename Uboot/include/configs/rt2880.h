@@ -76,18 +76,19 @@
 #define CPU_CLOCK_RATE	FPGA_BOARD_CLOCK_RATE /* default: 150 MHz clock for the MIPS core */
 #endif
 
-#endif 
+#endif
 
 #define SERIAL_CLOCK_DIVISOR 16
 
-#define CONFIG_BOOTDELAY	30	/* autoboot after 30 seconds	*/
+#define CONFIG_BOOTDELAY 5 /* autoboot after 30 seconds	*/
 
 #define CONFIG_WEBGPIO	0	/* use gpio 0 to trigger webpage	*/
 
-#define CONFIG_BAUDRATE		57600
+#define CONFIG_BAUDRATE  57600
 
-#define CONFIG_SERVERIP 10.10.10.3
-#define CONFIG_IPADDR 10.10.10.123
+#define CONFIG_SERVERIP 192.168.1.240
+#define CONFIG_IPADDR 192.168.1.1
+#define CONFIG_NETCONSOLE 192.168.1.240
 #define CONFIG_ETHADDR "00:AA:BB:CC:DD:10"
 /* valid baudrates */
 #define CFG_BAUDRATE_TABLE	{ 9600, 19200, 38400, 57600, 115200 }
@@ -184,7 +185,7 @@
 #if defined(RT6855A_FPGA_BOARD) || defined(RT6855A_ASIC_BOARD)
 #define CFG_SPINAND_LOAD_ADDR	0x80c00000
 #else
-#define CFG_SPINAND_LOAD_ADDR	0x80500000
+#define CFG_SPINAND_LOAD_ADDR 0x80300000
 #endif
 
 #define CFG_MEMTEST_START	0x80100000

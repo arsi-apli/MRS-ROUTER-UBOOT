@@ -33,6 +33,7 @@
 #include <rt_mmap.h>
 
 extern unsigned long mips_bus_feq;
+extern int web_enabled;
 
 /* this function does not need to know the cpu and bus clock after RT3352. the clock is fix at 40Mhz */
 void serial_setbrg (void)
@@ -368,8 +369,10 @@ int serial_init (void)
 /*
  * Output a single byte to the serial port.
  */
-void serial_putc (const char c)
-{
+void serial_putc (const char c) {
+    if (web_enabled == 0) {
+        return;
+    }
 #if defined (RT6855A_FPGA_BOARD) || defined (RT6855A_ASIC_BOARD) 
 	while (!(ra_inb(CR_UART_LSR) & LSR_TEMT));
 	ra_outb(CR_UART_THR, c);
@@ -392,8 +395,10 @@ void serial_putc (const char c)
  * otherwise. When the function is succesfull, the character read is
  * written into its argument c.
  */
-int serial_tstc (void)
-{
+int serial_tstc (void) {
+    if (web_enabled == 0) {
+        return 0;
+    }
 #if defined (RT6855A_FPGA_BOARD) || defined (RT6855A_ASIC_BOARD) 
 	return (ra_inb(CR_UART_LSR) & LSR_DR);
 #else
@@ -406,8 +411,10 @@ int serial_tstc (void)
  * otherwise. When the function is succesfull, the character read is
  * written into its argument c.
  */
-int serial_getc (void)
-{
+int serial_getc (void) {
+    if (web_enabled == 0) {
+        return 0;
+    }
 #if defined (RT6855A_FPGA_BOARD) || defined (RT6855A_ASIC_BOARD) 
 	while (!(ra_inb(CR_UART_LSR) & LSR_DR));
 	return (char) (ra_inb(CR_UART_RBR) & 0xff);
@@ -418,8 +425,10 @@ int serial_getc (void)
 }
 
 void
-serial_puts (const char *s)
-{
+serial_puts (const char *s) {
+    if (web_enabled == 0) {
+        return;
+    }
 	while (*s) {
 		serial_putc (*s++);
 	}

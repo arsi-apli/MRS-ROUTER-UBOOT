@@ -37,7 +37,8 @@
 #include <environment.h>
 #include <asm/byteorder.h>
 
- /*cmd_boot.c*/
+/*cmd_boot.c*/
+extern void wd_make(void);
  extern int do_reset (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[]);
 
 #if (CONFIG_COMMANDS & CFG_CMD_DATE) || defined(CONFIG_TIMESTAMP)
@@ -122,9 +123,7 @@ static boot_os_Fcn do_bootm_linux;
 #else
 extern boot_os_Fcn do_bootm_linux;
 #endif
-#ifdef CONFIG_SILENT_CONSOLE
-static void fixup_silent_linux (void);
-#endif
+static void fixup_silent_linux(void);
 #ifdef CONFIG_NETBSD
 static boot_os_Fcn do_bootm_netbsd;
 #endif
@@ -291,7 +290,7 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	}
 #else //CFG_ENV_IS_IN_FLASH
 #endif
-
+    wd_make();
 	if (verify) {
 		puts ("   Verifying Checksum ... ");
 		if (crc32 (0, (char *)data, len) != ntohl(hdr->ih_dcrc)) {
@@ -321,8 +320,6 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	if (hdr->ih_arch != IH_CPU_MICROBLAZE)
 #elif defined(__nios2__)
 	if (hdr->ih_arch != IH_CPU_NIOS2)
-#else
-# error Unknown CPU type
 #endif
 	{
 		printf ("Unsupported Architecture 0x%x\n", hdr->ih_arch);
@@ -353,8 +350,9 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	default: printf ("Wrong Image Type for %s command\n", cmdtp->name);
 		SHOW_BOOT_PROGRESS (-5);
 		return 1;
-	}
-	SHOW_BOOT_PROGRESS (6);
+    }
+    SHOW_BOOT_PROGRESS(6);
+    wd_make();
 
 	/*
 	 * We have reached the point of no return: we are going to
@@ -460,7 +458,8 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 		printf ("Unimplemented compression type %d\n", hdr->ih_comp);
 		SHOW_BOOT_PROGRESS (-7);
 		return 1;
-	}
+    }
+    wd_make();
 	puts ("OK\n");
 	SHOW_BOOT_PROGRESS (7);
 
@@ -495,16 +494,15 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 		printf ("Can't boot image type %d\n", hdr->ih_type);
 		SHOW_BOOT_PROGRESS (-8);
 		return 1;
-	}
+    }
+    wd_make();
 	SHOW_BOOT_PROGRESS (8);
 
 	switch (hdr->ih_os) {
 	default:			/* handled by (original) Linux case */
 	case IH_OS_LINUX:
-#ifdef CONFIG_SILENT_CONSOLE
-	    fixup_silent_linux();
-#endif
-	    do_bootm_linux  (cmdtp, flag, argc, argv,
+            fixup_silent_linux();
+            do_bootm_linux(cmdtp, flag, argc, argv,
 			     addr, len_ptr, verify);
 	    break;
 
@@ -545,9 +543,8 @@ int do_bootm (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 			     addr, len_ptr, verify);
 	    break;
 #endif
-	}
-
-	SHOW_BOOT_PROGRESS (-9);
+    }
+    SHOW_BOOT_PROGRESS(-9);
 #ifdef DEBUG
 	puts ("\n## Control returned to monitor - resetting...\n");
 	do_reset (cmdtp, flag, argc, argv);
@@ -563,7 +560,6 @@ U_BOOT_CMD(
  	"\t'arg' can be the address of an initrd image\n"
 );
 
-#ifdef CONFIG_SILENT_CONSOLE
 static void
 fixup_silent_linux ()
 {
@@ -572,8 +568,6 @@ fixup_silent_linux ()
 	char *cmdline = getenv ("bootargs");
 
 	/* Only fix cmdline when requested */
-	if (!(gd->flags & GD_FLG_SILENT))
-		return;
 
 	debug ("before silent fix-up: %s\n", cmdline);
 	if (cmdline) {
@@ -595,7 +589,6 @@ fixup_silent_linux ()
 	setenv ("bootargs", buf);
 	debug ("after silent fix-up: %s\n", buf);
 }
-#endif /* CONFIG_SILENT_CONSOLE */
 
 #ifdef CONFIG_PPC
 static void

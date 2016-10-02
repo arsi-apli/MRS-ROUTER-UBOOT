@@ -27,7 +27,7 @@ include $(TOPDIR)/config.mk
 
 LIB	= libdrivers.a
 
-OBJS	= rt2880_eth.o i2c_drv.o mii_mgr.o
+OBJS	= rt2880_eth.o i2c_drv.o mii_mgr.o netconsole.o
 
 ifeq ($(CFG_ENV_IS), IN_FLASH)
 OBJS	+= spi_drv.o 

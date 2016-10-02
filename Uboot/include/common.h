@@ -38,6 +38,11 @@ typedef volatile unsigned char	vu_char;
 #include <linux/string.h>
 #include <asm/ptrace.h>
 #include <stdarg.h>
+#ifndef CFG_ENV_IS_IN_SPI
+#define CFG_ENV_IS_IN_SPI
+#endif
+
+#define CONFIG_NETCONSOLE
 #if defined(CONFIG_PCI) && defined(CONFIG_440)
 #include <pci.h>
 #endif

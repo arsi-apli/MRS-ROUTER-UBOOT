@@ -27,6 +27,8 @@
 #include <console.h>
 #include <exports.h>
 
+extern int web_enabled;
+
 #ifdef CONFIG_AMIGAONEG3SE
 int console_changed = 0;
 #endif
@@ -96,8 +98,11 @@ static int console_setfile (int file, device_t * dev)
 
 /** U-Boot INITIAL CONSOLE-NOT COMPATIBLE FUNCTIONS *************************/
 
-void serial_printf (const char *fmt, ...)
-{
+void serial_printf (const char *fmt, ...) {
+    if (web_enabled == 0) {
+        return;
+    }
+
 	va_list args;
 	uint i;
 	char printbuffer[CFG_PBSIZE];
@@ -113,36 +118,48 @@ void serial_printf (const char *fmt, ...)
 	serial_puts (printbuffer);
 }
 
-int fgetc (int file)
-{
+int fgetc (int file) {
+    if (web_enabled == 0) {
+        return -1;
+    }
+
 	if (file < MAX_FILES)
 		return stdio_devices[file]->getc ();
 
 	return -1;
 }
 
-int ftstc (int file)
-{
+int ftstc (int file) {
+    if (web_enabled == 0) {
+        return -1;
+    }
+
 	if (file < MAX_FILES)
 		return stdio_devices[file]->tstc ();
 
 	return -1;
 }
 
-void fputc (int file, const char c)
-{
+void fputc (int file, const char c) {
+    if (web_enabled == 0) {
+        return;
+    }
+
 	if (file < MAX_FILES)
 		stdio_devices[file]->putc (c);
 }
 
-void fputs (int file, const char *s)
-{
+void fputs (int file, const char *s) {
+    if (web_enabled == 0) {
+        return;
+    }
+
 	if (file < MAX_FILES)
 		stdio_devices[file]->puts (s);
 }
 
-void fprintf (int file, const char *fmt, ...)
-{
+void fprintf (int file, const char *fmt, ...) {
+    
 	va_list args;
 	uint i;
 	char printbuffer[CFG_PBSIZE];
@@ -189,10 +206,9 @@ void putc (const char c)
 {
 	DECLARE_GLOBAL_DATA_PTR;
 
-#ifdef CONFIG_SILENT_CONSOLE
-	if (gd->flags & GD_FLG_SILENT)
-		return;
-#endif
+    if (web_enabled == 0) {
+        return;
+    }
 
 	if (gd->flags & GD_FLG_DEVINIT) {
 		/* Send to the standard output */
@@ -207,10 +223,9 @@ void puts (const char *s)
 {
 	DECLARE_GLOBAL_DATA_PTR;
 
-#ifdef CONFIG_SILENT_CONSOLE
-	if (gd->flags & GD_FLG_SILENT)
-		return;
-#endif
+    if (web_enabled == 0) {
+        return;
+    }
 
 	if (gd->flags & GD_FLG_DEVINIT) {
 		/* Send to the standard output */
@@ -221,8 +236,11 @@ void puts (const char *s)
 	}
 }
 
-void printf (const char *fmt, ...)
-{
+void printf (const char *fmt, ...) {
+
+    if (web_enabled == 0) {
+        return;
+    }
 	va_list args;
 	uint i;
 	char printbuffer[CFG_PBSIZE];
@@ -239,8 +257,10 @@ void printf (const char *fmt, ...)
 	puts (printbuffer);
 }
 
-void vprintf (const char *fmt, va_list args)
-{
+void vprintf (const char *fmt, va_list args) {
+    if (web_enabled == 0) {
+        return;
+    }
 	uint i;
 	char printbuffer[CFG_PBSIZE];
 
@@ -394,11 +414,9 @@ int console_init_f (void)
 {
 	DECLARE_GLOBAL_DATA_PTR;
 	gd->have_console = 1;
-#ifdef CONFIG_SILENT_CONSOLE
-	if (getenv("silent") != NULL)
-		gd->flags |= GD_FLG_SILENT;
-#endif
-	return (0);
+    if (web_enabled == 0) {
+        return;
+    }
 }
 
 #if defined(CFG_CONSOLE_IS_IN_ENV) || defined(CONFIG_SPLASH_SCREEN) || defined(CONFIG_SILENT_CONSOLE)

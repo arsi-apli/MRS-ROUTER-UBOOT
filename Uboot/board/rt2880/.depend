@@ -1,0 +1,119 @@
+# 1 "/jetty/wiz550/uboot_web/Uboot/board/rt2880//"
+rt2880_init.o: rt2880_init.S \
+  /jetty/wiz550/uboot_web/Uboot/include/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/configs/rt2880.h \
+  /jetty/wiz550/uboot_web/Uboot/include/cmd_confdefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/version.h \
+  /jetty/wiz550/uboot_web/Uboot/include/../uboot_version.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/regdef.h include/sysc.h \
+  include/product.h include/mem_map.h \
+  /jetty/wiz550/uboot_web/Uboot/include/rt_mmap.h include/mem_map_1fc0.h \
+  include/chip_reg_map.h include/aux_reg_map.h include/product.h \
+  include/mem_map.h include/mac.inc include/chip_reg_map.h include/cpu.h
+# 1 "/jetty/wiz550/uboot_web/Uboot/board/rt2880//"
+memsetup.o: memsetup.S /jetty/wiz550/uboot_web/Uboot/include/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/configs/rt2880.h \
+  /jetty/wiz550/uboot_web/Uboot/include/cmd_confdefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/version.h \
+  /jetty/wiz550/uboot_web/Uboot/include/../uboot_version.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/regdef.h include/product.h \
+  include/mem_map.h /jetty/wiz550/uboot_web/Uboot/include/rt_mmap.h \
+  include/mem_map_1fc0.h include/chip_reg_map.h include/aux_reg_map.h \
+  include/mem_map.h include/mac.inc include/chip_reg_map.h
+# 1 "/jetty/wiz550/uboot_web/Uboot/board/rt2880//"
+rt2880.o: rt2880.c /jetty/wiz550/uboot_web/Uboot/include/common.h \
+  /jetty/wiz550/uboot_web/Uboot/include/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/configs/rt2880.h \
+  /jetty/wiz550/uboot_web/Uboot/include/cmd_confdefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/stddef.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/byteorder.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/little_endian.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/swab.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/generic.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/sgidefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/system.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/ptrace.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/isadep.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/string.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/string.h \
+  /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/include/stdarg.h \
+  /jetty/wiz550/uboot_web/Uboot/include/part.h \
+  /jetty/wiz550/uboot_web/Uboot/include/ide.h \
+  /jetty/wiz550/uboot_web/Uboot/include/flash.h \
+  /jetty/wiz550/uboot_web/Uboot/include/image.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/u-boot.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/global_data.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/regdef.h \
+  /jetty/wiz550/uboot_web/Uboot/include/command.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/addrspace.h
+# 1 "/jetty/wiz550/uboot_web/Uboot/board/rt2880//"
+serial.o: serial.c /jetty/wiz550/uboot_web/Uboot/include/common.h \
+  /jetty/wiz550/uboot_web/Uboot/include/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/configs/rt2880.h \
+  /jetty/wiz550/uboot_web/Uboot/include/cmd_confdefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/stddef.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/byteorder.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/little_endian.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/swab.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/generic.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/sgidefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/system.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/ptrace.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/isadep.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/string.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/string.h \
+  /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/include/stdarg.h \
+  /jetty/wiz550/uboot_web/Uboot/include/part.h \
+  /jetty/wiz550/uboot_web/Uboot/include/ide.h \
+  /jetty/wiz550/uboot_web/Uboot/include/flash.h \
+  /jetty/wiz550/uboot_web/Uboot/include/image.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/u-boot.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/global_data.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/regdef.h serial.h \
+  /jetty/wiz550/uboot_web/Uboot/include/rt_mmap.h
+# 1 "/jetty/wiz550/uboot_web/Uboot/board/rt2880//"
+flash.o: flash.c /jetty/wiz550/uboot_web/Uboot/include/common.h \
+  /jetty/wiz550/uboot_web/Uboot/include/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/configs/rt2880.h \
+  /jetty/wiz550/uboot_web/Uboot/include/cmd_confdefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/bitops.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/config.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/stddef.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/posix_types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/types.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/byteorder.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/little_endian.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/swab.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/byteorder/generic.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/sgidefs.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/system.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/ptrace.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/isadep.h \
+  /jetty/wiz550/uboot_web/Uboot/include/linux/string.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/string.h \
+  /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/include/stdarg.h \
+  /jetty/wiz550/uboot_web/Uboot/include/part.h \
+  /jetty/wiz550/uboot_web/Uboot/include/ide.h \
+  /jetty/wiz550/uboot_web/Uboot/include/flash.h \
+  /jetty/wiz550/uboot_web/Uboot/include/image.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/u-boot.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/global_data.h \
+  /jetty/wiz550/uboot_web/Uboot/include/asm/regdef.h \
+  /jetty/wiz550/uboot_web/Uboot/include/rt_mmap.h

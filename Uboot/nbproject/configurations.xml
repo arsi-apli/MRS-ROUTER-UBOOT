@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="board">
+        <df name="rt2880">
+          <in>flash.c</in>
+          <in>rt2880.c</in>
+          <in>serial.c</in>
+        </df>
+      </df>
+      <df name="common">
+        <in>cmd_bdinfo.c</in>
+        <in>cmd_boot.c</in>
+        <in>cmd_bootm.c</in>
+        <in>cmd_console.c</in>
+        <in>cmd_fat.c</in>
+        <in>cmd_flash.c</in>
+        <in>cmd_load.c</in>
+        <in>cmd_mem.c</in>
+        <in>cmd_misc.c</in>
+        <in>cmd_net.c</in>
+        <in>cmd_nvedit.c</in>
+        <in>cmd_usb.c</in>
+        <in>command.c</in>
+        <in>console.c</in>
+        <in>devices.c</in>
+        <in>dlmalloc.c</in>
+        <in>env_common.c</in>
+        <in>env_flash.c</in>
+        <in>env_nand.c</in>
+        <in>env_spi.c</in>
+        <in>environment.c</in>
+        <in>exports.c</in>
+        <in>flash.c</in>
+        <in>lists.c</in>
+        <in>main.c</in>
+        <in>usb.c</in>
+        <in>usb_storage.c</in>
+      </df>
+      <df name="cpu">
+        <df name="ralink_soc">
+          <in>cpu.c</in>
+          <in>interrupts.c</in>
+        </df>
+      </df>
+      <df name="disk">
+        <in>part.c</in>
+        <in>part_amiga.c</in>
+        <in>part_dos.c</in>
+        <in>part_iso.c</in>
+        <in>part_mac.c</in>
+      </df>
+      <df name="drivers">
+        <in>ehci-hcd.c</in>
+        <in>ehci-ra.c</in>
+        <in>i2c_drv.c</in>
+        <in>mii_mgr.c</in>
+        <in>nand_flash.c</in>
+        <in>ohci-hcd.c</in>
+        <in>rt2880_eth.c</in>
+        <in>spi_drv.c</in>
+        <in>spi_flash.c</in>
+        <in>spi_rt6855A_flash.c</in>
+      </df>
+      <df name="fs">
+        <df name="fat">
+          <in>fat.c</in>
+          <in>file.c</in>
+        </df>
+      </df>
+      <df name="httpd">
+        <in>fs.c</in>
+        <in>fsdata.c</in>
+        <in>httpd.c</in>
+        <in>main.c</in>
+        <in>tapdev.c</in>
+        <in>uip.c</in>
+        <in>uip_arch.c</in>
+        <in>uip_arp.c</in>
+      </df>
+      <df name="lib_generic">
+        <df name="temp">
+          <in>bzlib.c</in>
+          <in>bzlib_crctable.c</in>
+          <in>bzlib_decompress.c</in>
+          <in>bzlib_huffman.c</in>
+          <in>bzlib_randtable.c</in>
+          <in>ldiv.c</in>
+        </df>
+        <in>LzmaDecode.c</in>
+        <in>crc32.c</in>
+        <in>ctype.c</in>
+        <in>display_options.c</in>
+        <in>string.c</in>
+        <in>vsprintf.c</in>
+        <in>zlib.c</in>
+      </df>
+      <df name="lib_mips">
+        <in>board.c</in>
+        <in>mips_linux.c</in>
+        <in>time.c</in>
+      </df>
+      <df name="net">
+        <in>bootp.c</in>
+        <in>eth.c</in>
+        <in>httpd.c</in>
+        <in>net.c</in>
+        <in>rarp.c</in>
+        <in>tftp.c</in>
+      </df>
+      <df name="rtc">
+        <in>date.c</in>
+      </df>
+      <df name="scripts">
+        <df name="lxdialog">
+          <in>checklist.c</in>
+          <in>inputbox.c</in>
+          <in>lxdialog.c</in>
+          <in>menubox.c</in>
+          <in>msgbox.c</in>
+          <in>textbox.c</in>
+          <in>util.c</in>
+          <in>yesno.c</in>
+        </df>
+        <in>tkcond.c</in>
+        <in>tkgen.c</in>
+        <in>tkparse.c</in>
+      </df>
+      <df name="stage1">
+        <in>boot.c</in>
+        <in>gdma.c</in>
+        <in>nandc.c</in>
+      </df>
+      <df name="tools">
+        <df name="env">
+          <in>fw_env.c</in>
+          <in>fw_env_main.c</in>
+        </df>
+        <in>crc32.c</in>
+        <in>mkimage.c</in>
+      </df>
+      <df name="uip">
+        <df name="apps">
+          <df name="webserver">
+            <in>http-strings.c</in>
+            <in>httpd-cgi.c</in>
+            <in>httpd-fs.c</in>
+            <in>httpd-fsdata.c</in>
+            <in>httpd.c</in>
+          </df>
+        </df>
+        <df name="uip">
+          <in>psock.c</in>
+          <in>timer.c</in>
+          <in>uip-fw.c</in>
+          <in>uip-neighbor.c</in>
+          <in>uip-split.c</in>
+          <in>uip.c</in>
+          <in>uip_arp.c</in>
+          <in>uiplib.c</in>
+        </df>
+        <df name="unix">
+          <in>clock-arch.c</in>
+          <in>unix.c</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="board/rt2880/flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="board/rt2880/rt2880.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="board/rt2880/serial.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_bdinfo.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_boot.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_bootm.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_console.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_fat.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_load.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_mem.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_misc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_net.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_nvedit.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/cmd_usb.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/command.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/console.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/devices.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/dlmalloc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/env_common.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/env_flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/env_nand.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/env_spi.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/environment.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/exports.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/lists.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/main.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/usb.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="common/usb_storage.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="cpu/ralink_soc/cpu.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="cpu/ralink_soc/interrupts.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="disk/part.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="disk/part_amiga.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="disk/part_dos.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="disk/part_iso.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="disk/part_mac.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/ehci-hcd.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/ehci-ra.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/i2c_drv.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/mii_mgr.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/nand_flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/ohci-hcd.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/rt2880_eth.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/spi_drv.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/spi_flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="drivers/spi_rt6855A_flash.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="fs/fat/fat.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="fs/fat/file.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/fs.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/fsdata.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/httpd.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/main.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/tapdev.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/uip.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/uip_arch.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="httpd/uip_arp.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/LzmaDecode.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/crc32.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/ctype.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/display_options.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/string.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/temp/bzlib.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/temp/bzlib_crctable.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/temp/bzlib_decompress.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+      </item>
+      <item path="lib_generic/temp/bzlib_huffman.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/temp/bzlib_randtable.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/temp/ldiv.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/vsprintf.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_generic/zlib.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_mips/board.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_mips/mips_linux.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="lib_mips/time.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/bootp.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/eth.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/httpd.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/net.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/rarp.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="net/tftp.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="rtc/date.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/checklist.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/inputbox.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/lxdialog.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/menubox.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/msgbox.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/textbox.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/util.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/lxdialog/yesno.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/tkcond.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/tkgen.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="scripts/tkparse.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="stage1/boot.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="stage1/gdma.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="stage1/nandc.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="tools/crc32.c" ex="false" tool="0" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>tools</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>USE_HOSTCC</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="tools/env/fw_env.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="tools/env/fw_env_main.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="tools/mkimage.c" ex="false" tool="0" flavor2="0">
+        <cTool>
+          <incDir>
+            <pElem>tools</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>USE_HOSTCC</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="uip/apps/webserver/http-strings.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/apps/webserver/httpd-cgi.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/apps/webserver/httpd-fs.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/apps/webserver/httpd-fsdata.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/apps/webserver/httpd.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/psock.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/timer.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uip-fw.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uip-neighbor.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uip-split.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uip.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uip_arp.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/uip/uiplib.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/unix/clock-arch.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="uip/unix/unix.c" ex="false" tool="0" flavor2="2">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

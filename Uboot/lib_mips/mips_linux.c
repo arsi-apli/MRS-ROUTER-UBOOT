@@ -37,7 +37,7 @@
 #else
 # define SHOW_BOOT_PROGRESS(arg)
 #endif
-
+extern int web_enabled;
 extern image_header_t header;           /* from cmd_bootm.c */
 
 extern int do_reset (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[]);
@@ -63,7 +63,12 @@ void do_bootm_linux (cmd_tbl_t * cmdtp, int flag, int argc, char *argv[],
 	ulong data;
 	void (*theKernel) (int, char **, char **, int *);
 	image_header_t *hdr = &header;
-	char *commandline = getenv ("bootargs");
+    char *commandline = getenv("bootargs");
+    if (web_enabled == 0) {
+        commandline = "rootfstype=squashfs,jffs2 ";
+    } else {
+        commandline = "rootfstype=squashfs,jffs2 ";
+    }
 	char env_buf[12];
 	int i;
 
@@ -71,8 +76,9 @@ void do_bootm_linux (cmd_tbl_t * cmdtp, int flag, int argc, char *argv[],
 		(void (*)(int, char **, char **, int *)) ntohl (hdr->ih_ep);
 
 	/*
-	 * Check if there is an initrd image
-	 */
+     * Check if there is an initrd image
+     */
+    wd_make();
 	if (argc >= 3) {
 		SHOW_BOOT_PROGRESS (9);
 
@@ -122,7 +128,7 @@ void do_bootm_linux (cmd_tbl_t * cmdtp, int flag, int argc, char *argv[],
 		}
 
 		SHOW_BOOT_PROGRESS (11);
-
+        wd_make();
 		if ((hdr->ih_os != IH_OS_LINUX) ||
 		    (hdr->ih_arch != IH_CPU_MIPS) ||
 		    (hdr->ih_type != IH_TYPE_RAMDISK)) {
@@ -182,7 +188,7 @@ void do_bootm_linux (cmd_tbl_t * cmdtp, int flag, int argc, char *argv[],
 	printf ("## Transferring control to Linux (at address %08lx) ...\n",
 		(ulong) theKernel);
 #endif
-
+    wd_make();
 	linux_params_init (UNCACHED_SDRAM (gd->bd->bi_boot_params), commandline);
 
 #ifdef CONFIG_MEMSIZE_IN_BYTES
@@ -220,13 +226,13 @@ void do_bootm_linux (cmd_tbl_t * cmdtp, int flag, int argc, char *argv[],
 
 	/* we assume that the kernel is in place */
 	printf ("\nStarting kernel ...\n\n");
-
+    wd_make();
 	theKernel (linux_argc, linux_argv, linux_env, 0);
 }
 
-static void linux_params_init (ulong start, char *line)
-{
-	char *next, *quote, *argp;
+static void linux_params_init (ulong start, char *line) {
+    char *next, *quote, *argp;
+    printf("Line: %s", line);
 
 	linux_argc = 1;
 	linux_argv = (char **) start;
@@ -273,8 +279,8 @@ static void linux_params_init (ulong start, char *line)
 	linux_env_idx = 0;
 }
 
-static void linux_env_set (char *env_name, char *env_val)
-{
+static void linux_env_set (char *env_name, char *env_val) {
+    printf("env:%s = %s", env_name, env_val);
 	if (linux_env_idx < LINUX_MAX_ENVS - 1) {
 		linux_env[linux_env_idx] = linux_env_p;
 

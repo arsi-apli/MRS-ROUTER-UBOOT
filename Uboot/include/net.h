@@ -351,15 +351,15 @@ static inline __attribute__((always_inline)) void eth_halt_state_only(void){
 
 static inline void eth_set_last_protocol(int protocol){
 #ifdef CONFIG_NETCONSOLE
-	extern proto_t net_loop_last_protocol;
-	net_loop_last_protocol = protocol;
+    //	extern proto_t net_loop_last_protocol;
+    //	net_loop_last_protocol = protocol;
 #endif
 }
 
 static inline __attribute__((always_inline)) int eth_is_on_demand_init(void){
 #ifdef CONFIG_NETCONSOLE
-	extern proto_t net_loop_last_protocol;
-	return net_loop_last_protocol != NETCONS;
+    //	extern proto_t net_loop_last_protocol;
+    //	return net_loop_last_protocol != NETCONS;
 #else
 	return 1;
 #endif

@@ -75,6 +75,8 @@ static int watchdog_reset();
 
 extern int timer_init(void);
 
+int web_enabled;
+
 extern void  rt2880_eth_halt(struct eth_device* dev);
 
 //extern void pci_init(void);
@@ -137,8 +139,8 @@ static char  file_name_space[ARGV_LEN];
         __res;})
 
 
-static void Init_System_Mode(void)
-{
+static void Init_System_Mode(void) {
+    web_enabled = 0;
 	u32 reg;
 #ifdef ASIC_BOARD
 	u8	clk_sel, clk_sel2;
@@ -547,8 +549,8 @@ init_fnc_t *init_sequence[] = {
 
 
 //  
-void board_init_f(ulong bootflag)
-{
+void board_init_f(ulong bootflag) {
+    web_enabled = 0;
 	gd_t gd_data, *id;
 	bd_t *bd;  
 	//init_fnc_t **init_fnc_ptr;
@@ -577,7 +579,8 @@ void board_init_f(ulong bootflag)
 	timer_init();
 	env_init();		/* initialize environment */
 	init_baudrate();		/* initialze baudrate settings */
-	serial_init();		/* serial communications setup */
+    serial_init(); /* serial communications setup */
+    
 	console_init_f();
 	display_banner();		/* say that we are here */
 	checkboard();
@@ -749,51 +752,52 @@ void board_init_f(ulong bootflag)
 
 #define DEFAULT_GPIO_FOR_WEBMODE 0
 #define GPIO_REG 0x10000600
+#define MODE_REG 0x10000000
 
 #define ra_inl(addr)  (*(volatile u32 *)(addr))
 #define ra_outl(addr, value)  (*(volatile u32 *)(addr) = (value))
 #define ra_and(addr, value) ra_outl(addr, (ra_inl(addr) & (value)))
 #define ra_or(addr, value) ra_outl(addr, (ra_inl(addr) | (value)))
 int webgpio, no_prompts = 0;
-int gpio_trigger_enable(void){
-	if (webgpio == 0){
-		/* set gpio0 as input */
-		ra_and(GPIO_REG + 0x0024, 0xFFFFFFFE);
-		if ((ra_inl(GPIO_REG + 0x0024) & 0x00000001) == 0x00000000){
-			printf("Hold GPIO %i high for 3 seconds then release to trigger webpage to load image\n", webgpio);
-			return 1;
-		}else{
-			return 0;
-		}
-	}
- 	if (webgpio == 27){
-		/* set gpio 27 as input*/
-		ra_and(GPIO_REG + 0x0074, ~(0x0001 << 5) );
-		if ((ra_inl(GPIO_REG + 0x0074) & (0x00000001 << 5)) == 0x00000000){
-			printf("Hold GPIO %i high for 3 seconds then release to trigger webpage to load image\n", webgpio);
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-}	
 
-int gpio_trigger_status(void){
+int gpio_trigger_enable(void) {
+    /* set gpio0 as input */
+    ra_or(MODE_REG + 0x0060, (0x1 << 6));
+    if ((ra_inl(MODE_REG + 0x0060) & (0x0001 << 6)) == 0x00000000) {
+        printf("Mod je nastaveny na 0\n");
+    } else {
+        printf("Mod je nastaveny na 1\n");
+    }
+    ra_and(GPIO_REG + 0x0024, ~(0x0001 << 18));
+    if ((ra_inl(GPIO_REG + 0x0020) & (0x0001 << 18)) == 0x00000000) {
+        printf("gpio je 0\n");
+        return 0;
+    } else {
+        printf("gpio je 1\n");
+        return 1;
+    }
 
-/*	if (ra_inl(GPIO_REG + 0x0020) & 0x0001 == 0x00000001){
-		return 1;
-	}*/
-/*	if ((((ra_inl(GPIO_REG + 0x0070) & (0x0001 << 5))  >> 5) == 0x00000001) || (ra_inl(GPIO_REG + 0x0020) & 0x0001 == 0x00000001))*/
-	if (webgpio == 0){
-		if ( ((ra_inl(GPIO_REG + 0x0020) & 0x0001) == 0x00000001) ){
+}
+
+int wd_enable(void) {
+    /* set gpio0 as output */
+    ra_or(GPIO_REG + 0x0024, 1);
+}
+
+void wd_make(void) {
+    if ((ra_inl(GPIO_REG + 0x0020) & (0x0001)) == 0x00000000) {
+        ra_or(GPIO_REG + 0x0020, 1);
+    } else {
+        ra_and(GPIO_REG + 0x0020, 0xFFFFFFFE);
+    }
+}
+
+int gpio_trigger_status(void) {
+
+    if (((ra_inl(GPIO_REG + 0x0020) & (0x0001 << 18)) == 0x00000001)) {
 			return 1;
-		}
-	}else if (webgpio == 27){
-		if ( (((ra_inl(GPIO_REG + 0x0070) & (0x0001 << 5))  >> 5) == 0x00000001) ){
-			return 1;
-		}
-	}
-	return 0;
+    }
+    return 0;
 	
 }
 
@@ -1809,65 +1813,58 @@ void board_init_r (gd_t *id, ulong dest_addr)
 	    char * s;
 	    s = getenv ("bootdelay");
 	    timer1 = s ? (int)simple_strtol(s, NULL, 10) : CONFIG_BOOTDELAY;
-	}
-	int web_enabled, went_high = 0, went_low =0, gpio_trigger = 0, threeseconds = 0, web_timer = 0;
+    }
+    int went_high = 0, went_low = 0, gpio_trigger = 0, threeseconds = 0, web_timer = 0;
 	{
 	    char * s;
 	    s = getenv ("webgpio");
 	    webgpio = s ? (int)simple_strtol(s, NULL, 10) : CONFIG_WEBGPIO;
-	}
-	web_enabled = gpio_trigger_enable();
-/*	gpio_trigger = gpio_trigger_status();*/
-	printf("GPIO %i is %s \n", webgpio, (gpio_trigger ? "high" : "low"));
-	OperationSelect();   
+    }
+#if (CONFIG_COMMANDS & CFG_CMD_NET)
+    eth_initialize(gd->bd);
+    NcStart();
+#endif
+    web_enabled = gpio_trigger_enable();
+    BootType = '3';
+	OperationSelect();
 
-	while (timer1 > 0) {
-		--timer1;
-		/* delay 100 * 10ms */
-		for (i=0; i<100; ++i) {
-			if ((my_tmp = tstc()) != 0) {	/* we got a key press	*/
-				timer1 = 0;	/* no more delay	*/
-				BootType = getc();
-				if ((BootType < '0' || BootType > '5') && (BootType != '7') && (BootType != '8') && (BootType != '9'))
-					BootType = '3';
-				printf("\n\rYou chose %c\n\n", BootType);
-				break;
-			}
-			web_timer++;
-			if (gpio_trigger_status() != gpio_trigger){
-				printf("GPIO %i went %s\n", webgpio, gpio_trigger ? "low" : "high");
-				if (gpio_trigger == 0){
-					went_high = web_timer;
-				}else{
-					went_low = web_timer;
-				}
-				if ( ((went_low - went_high) >= 300) && ((went_low - went_high) <= 500  )){
-					BootType = '8';
-					break;
-				}
-				if ( ((went_low - went_high) >= 700) && ((went_low - went_high) <= 900  )){
-					BootType = '1';
-					no_prompts = 1;
-					break;
-				}
-				gpio_trigger = (gpio_trigger == 0) ? 1 : 0;
-			}
-			/*if (gpio_trigger == 1 && web_enabled){
-				web_timer += 1;
-				if (web_timer == 300){
-					printf("release GPIO %i now to trigger webpage\n", webgpio);
-					threeseconds = 1;
-				}
-			}
-			if (gpio_trigger == 0) web_timer = 0;
-			if (gpio_trigger == 0 && threeseconds == 1 && web_timer <= 500){
-				BootType = '8';
-				break;
-			}*/		
-			udelay (10000);
-		}
-		printf ("\b\b\b%2d ", timer1);
-	}
+    if (web_enabled > 0) {
+        while (timer1 > 0) {
+            --timer1;
+            /* delay 100 * 10ms */
+            for (i = 0; i < 100; ++i) {
+                if ((my_tmp = tstc()) != 0) { /* we got a key press	*/
+                    timer1 = 0; /* no more delay	*/
+                    BootType = getc();
+                    if ((BootType < '0' || BootType > '5') && (BootType != '7') && (BootType != '8') && (BootType != '9'))
+                        BootType = '3';
+                    printf("\n\rYou chose %c\n\n", BootType);
+                    break;
+                }
+                web_timer++;
+                if (gpio_trigger_status() == 0) {
+                    //                    BootType = '8';
+                    //                    break;
+                }
+                udelay(10000);
+            }
+            printf("\b\b\b%2d ", timer1);
+        }
+    } else {
+        wd_enable();
+        wd_make();
+        udelay(100000);
+        wd_make();
+        udelay(100000);
+        wd_make();
+        udelay(100000);
+        wd_make();
+        udelay(100000);
+    }
+
+    if (web_enabled > 0 && BootType == '3') {//firmware jumper ON and no user selection ... start web server
+        BootType = '8';
+    }
 	putc ('\n');
 
 	if(BootType == '3') {
@@ -1884,9 +1881,7 @@ void board_init_r (gd_t *id, ulong dest_addr)
 		argv[2] = &file_name_space[0];
 		memset(file_name_space,0,ARGV_LEN);
 
-#if (CONFIG_COMMANDS & CFG_CMD_NET)
-		eth_initialize(gd->bd);
-#endif
+
 
 		switch(BootType) {
 		case '1':

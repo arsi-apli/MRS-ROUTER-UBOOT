@@ -1,0 +1,33 @@
+Makefile:286: target `common/libcommon.a' given more than once in the same rule.
+find . -type f \
+		\( -name 'core' -o -name '*.bak' -o -name '*~' \
+		-o -name '*.o'  -o -name '*.a'  \) -print \
+		| xargs rm -f
+find ./ -name '.depend' -print | xargs rm -f
+rm -f examples/hello_world examples/timer \
+	      examples/eepro100_eeprom examples/sched \
+	      examples/mem_to_mem_idma2intr examples/82559_eeprom
+rm -f tools/img2srec tools/mkimage tools/envcrc tools/gen_eth_addr
+rm -f tools/mpc86x_clk tools/ncb
+rm -f tools/easylogo/easylogo tools/bmp_logo
+rm -f tools/gdb/astest tools/gdb/gdbcont tools/gdb/gdbsend
+rm -f board/cray/L1/bootscript.c board/cray/L1/bootscript.image
+rm -f board/trab/trab_fkt
+rm -f stage1/stage2.bin stage1/stage1n2.elf stage1/stage1n2.map
+rm -f ./uboot.bin ./uboot.img ./u-boot ./u-boot.*
+rm -f scripts/lxdialog/lxdialog
+/opt/buildroot-gcc342/bin/mipsel-linux-gcc -Wa,-gstabs -D__ASSEMBLY__ -gdwarf-2 -DDEBUG -Os   -D__KERNEL__ -DTEXT_BASE= -I/jetty/wiz550/uboot_web/Uboot/include -fno-builtin -ffreestanding -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/4.7/include -pipe  -DCONFIG_MIPS -D__MIPS__ -march=4kc -mtune=4kc -mabicalls -DRALINK_MDIO_ACCESS_FUN -DRALINK_SPI_UPGRADE_CHECK -DRALINK_RW_RF_REG_FUN -DCFG_ENV_IS_IN_FLASH -c -o cpu/ralink_soc/start.o /jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S
+In file included from /jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:26:
+/jetty/wiz550/uboot_web/Uboot/include/version.h:37:2: #error "PLATFORM_TYPE not defined in config.mk"
+/jetty/wiz550/uboot_web/Uboot/include/version.h:63:2: #error "CHIP_VER not defined in config.mk"
+/jetty/wiz550/uboot_web/Uboot/include/version.h:96:2: #error "GMAC_MODE not defined"
+/jetty/wiz550/uboot_web/Uboot/include/version.h:121:2: #error "DRAM SIZE not defined"
+/jetty/wiz550/uboot_web/Uboot/include/version.h:133:2: #error "DRAM BUS not defined"
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:559:16: operator '==' has no left operand
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S: Assembler messages:
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:1472: Error: absolute expression required `li'
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:1561: Error: absolute expression required `li'
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:1566: Error: absolute expression required `li'
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:1757: Error: absolute expression required `li'
+/jetty/wiz550/uboot_web/Uboot/cpu/ralink_soc/start.S:1768: Error: absolute expression required `sub'
+make: *** [cpu/ralink_soc/start.o] Error 1

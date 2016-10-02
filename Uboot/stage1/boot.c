@@ -41,8 +41,6 @@ inline nvram_t boot_from(void)
 	return SPI_FLASH;
 #elif defined (CFG_ENV_IS_IN_NAND)
 	return NAND_FLASH;
-#else
-#error "FIXME, fail to simulate bootstrap setting of booting device"
 #endif
 }
 
@@ -51,9 +49,8 @@ nvram_t ram = NOR_FLASH;
 
 typedef int (*NVRAM_READ_FUNC)(uint32_t , uint32_t , uint32_t);
 
-inline void nvram_init(NVRAM_READ_FUNC *nvram_read)
-{
-	ram = boot_from();
+inline void nvram_init(NVRAM_READ_FUNC *nvram_read) {
+    ram = SPI_FLASH;
 
 	if (ram == NOR_FLASH) {
 		//nor_init();	

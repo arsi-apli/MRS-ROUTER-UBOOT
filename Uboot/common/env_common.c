@@ -100,6 +100,11 @@ uchar default_environment[] = {
 #ifdef	CONFIG_IPADDR
 	"ipaddr=" MK_STR(CONFIG_IPADDR)		"\0"
 #endif
+#ifdef CONFIG_NETCONSOLE
+    "ncip=" MK_STR(CONFIG_NETCONSOLE) "\0"
+#endif      
+
+    
 #ifdef	CONFIG_SERVERIP
 	"serverip="	MK_STR(CONFIG_SERVERIP)		"\0"
 #endif
