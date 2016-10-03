@@ -1,3 +1,10 @@
+UBOOT MOD FOR MRS-ROUTER based on RT5350F-OLinuXino
+GPIO18:
+low: uboot - silent start - enable WD od GPIO0
+hi: uboot console & web update firmware
+
+
+
 RT5350 linux SDK from Ralink modified to open webpage on ethernet port
 =======
 Webpage can be triggered by gpio 0 (default) or gpio 27 (use setenv webgpio 27 in console)
