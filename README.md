@@ -1,6 +1,11 @@
 UBOOT MOD FOR MRS-ROUTER based on RT5350F-OLinuXino
+=======
 GPIO18:
+
+
 low: uboot - silent start - enable WD od GPIO0
+
+
 hi: uboot console & web update firmware
 
 
